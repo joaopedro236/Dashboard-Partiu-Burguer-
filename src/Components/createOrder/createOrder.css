@@ -18,7 +18,6 @@
   font-size: 30px;
   font-weight: 700;
   letter-spacing: -1px;
-  margin: 0 0 12px;
 }
 
 .CreateOrder header p {
@@ -59,9 +58,11 @@
 }
 
 .CreateOrder form input{
-  margin-top: 12px;
+  margin-top: 10px;
 }
-
+.CreateOrder form label{
+  margin-bottom: 6px;
+}
 .CreateOrder form input::placeholder,
 .CreateOrder form textarea::placeholder {
   color: #64748b;
