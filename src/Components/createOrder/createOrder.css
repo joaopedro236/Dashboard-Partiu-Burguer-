@@ -58,6 +58,10 @@
     background 0.2s ease;
 }
 
+.CreateOrder form input{
+  margin-top: 5px;
+}
+
 .CreateOrder form input::placeholder,
 .CreateOrder form textarea::placeholder {
   color: #64748b;
