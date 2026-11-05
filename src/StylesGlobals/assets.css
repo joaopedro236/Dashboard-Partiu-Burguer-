@@ -1,7 +1,7 @@
 body {
   font-family: sans-serif;
   color: white;
-  background-color: var(--bg-primary);
+  background: var(--bg-primary);
 }
 h1 {
   font-size: 23px;
