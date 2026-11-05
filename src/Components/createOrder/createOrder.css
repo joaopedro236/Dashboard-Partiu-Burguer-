@@ -33,7 +33,7 @@
   width: 100%;
   max-width: 750px;
   padding: 38px;
-  gap: 3px;
+  gap: 10px;
   box-sizing: border-box;
   background: rgba(15, 23, 42, 0.55);
   border: 1px solid rgba(148, 163, 184, 0.12);
@@ -58,13 +58,6 @@
     border-color 0.2s ease,
     box-shadow 0.2s ease,
     background 0.2s ease;
-}
-
-.CreateOrder form input{
-  margin-top: 10px;
-}
-.CreateOrder form label{
-  margin-bottom: 6px;
 }
 .CreateOrder form input::placeholder,
 .CreateOrder form textarea::placeholder {
