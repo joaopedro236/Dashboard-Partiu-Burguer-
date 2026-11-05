@@ -2,3 +2,6 @@ body{
     font-family: sans-serif;
     background-color: var(--bg-primary);
 }
+h1 {
+    font-size: 23px;
+}
