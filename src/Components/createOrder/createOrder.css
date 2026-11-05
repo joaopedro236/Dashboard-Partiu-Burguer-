@@ -28,6 +28,8 @@
 }
 
 .CreateOrder form {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 750px;
   padding: 38px;
