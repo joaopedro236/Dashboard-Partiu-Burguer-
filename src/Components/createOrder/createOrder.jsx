@@ -1,5 +1,5 @@
 import "./createOrder.css"
-export default function createOrder(){
+export default function CreateOrder(){
     return(
         <>
         <section className="createOrder flex flex-column gap-1">
