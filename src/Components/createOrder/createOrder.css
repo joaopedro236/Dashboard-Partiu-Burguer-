@@ -6,24 +6,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f1f5f9;
 }
 
 .CreateOrder header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
 }
 
 .CreateOrder header h1 {
-  color: #0f172a;
+  color: #f8fafc;
   font-size: 30px;
-  font-weight: 750;
+  font-weight: 700;
   letter-spacing: -1px;
-  margin: 0 0 10px;
+  margin-bottom: 10px;
 }
 
 .CreateOrder header p {
-  color: #64748b;
+  color: #94a3b8;
   font-size: 14px;
   line-height: 1.7;
   margin: 0;
@@ -31,13 +30,13 @@
 
 .CreateOrder form {
   width: 100%;
-  max-width: 720px;
-  padding: 40px;
+  max-width: 760px;
+  padding: 36px;
   box-sizing: border-box;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 22px;
-  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.07);
+  background: #111318;
+  border: 1px solid #252832;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
 }
 
 .CreateOrder .form-grid {
@@ -53,30 +52,29 @@
   padding: 16px 18px;
   font-family: inherit;
   font-size: 15px;
-  font-weight: 400;
-  color: #1e293b;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
+  color: #f1f5f9;
+  background: #191c24;
+  border: 1px solid #2b303b;
+  border-radius: 11px;
   outline: none;
   transition: all 0.25s ease;
 }
 
 .CreateOrder form input::placeholder,
 .CreateOrder form textarea::placeholder {
-  color: #94a3b8;
+  color: #737d8d;
 }
 
 .CreateOrder form input:hover,
 .CreateOrder form textarea:hover {
-  border-color: #cbd5e1;
+  border-color: #41485a;
 }
 
 .CreateOrder form input:focus,
 .CreateOrder form textarea:focus {
-  background: #ffffff;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+  background: #1c202a;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
 }
 
 .CreateOrder form textarea {
@@ -99,17 +97,17 @@
   font-size: 15px;
   font-weight: 650;
   border: none;
-  border-radius: 12px;
+  border-radius: 11px;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 5px 20px rgba(99, 102, 241, 0.15);
   transition: all 0.25s ease;
 }
 
 .CreateOrder form button:hover,
 .CreateOrder button[type="submit"]:hover {
-  background: linear-gradient(135deg, #5558e8, #4338ca);
+  background: linear-gradient(135deg, #818cf8, #6366f1);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.25);
 }
 
 .CreateOrder form button:active,
@@ -123,8 +121,7 @@
   }
 
   .CreateOrder form {
-    max-width: 580px;
-    padding: 30px;
+    padding: 28px;
   }
 
   .CreateOrder .form-grid {
@@ -134,17 +131,13 @@
 
 @media (max-width: 600px) {
   .CreateOrder {
-    padding: 20px 14px;
+    padding: 24px 14px;
     align-items: flex-start;
   }
 
   .CreateOrder form {
     padding: 24px 18px;
-    border-radius: 18px;
-  }
-
-  .CreateOrder header {
-    margin-bottom: 24px;
+    border-radius: 16px;
   }
 
   .CreateOrder header h1 {
@@ -158,7 +151,7 @@
 
   .CreateOrder form input,
   .CreateOrder form textarea {
-    padding: 14px 15px;
+    padding: 14px;
     font-size: 16px;
   }
 
