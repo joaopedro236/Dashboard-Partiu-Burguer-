@@ -5,9 +5,11 @@ export default function CreateOrder(){
     const [loading, setLoading] = useState(false)
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const form = e.target;
         const resultInputs = new FormData(e.target)
         
         await createOrderRequisition(setLoading,resultInputs)
+        form.reset()
     }
     return(
         <>
