@@ -48,4 +48,4 @@ app.add_middleware(
 app.include_router(createOrder)
 @app.on_event("startup")
 def startup():
-    createDatabaseOrder()
+    createDatabaseOrders()
