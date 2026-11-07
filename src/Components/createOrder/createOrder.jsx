@@ -6,7 +6,7 @@ export default function CreateOrder(){
     const handleSubmit = (e) => {
         e.preventDefault();
         const resultInputs = new FormData(e.target)
-        const file = e.target.file.files[0]
+        const file = e.target.image.files[0]
         createOrderRequisition(setLoading,resultInputs)
     }
     return(
@@ -16,7 +16,7 @@ export default function CreateOrder(){
                 <h1>Criação de Pedidos</h1>
                 <p>Aqui é aonde cria os pedidos, preenche os inputs e envia.</p>
             </header>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Nome do pedido</label>
             <input type="text" name="name" id="name" placeholder="Nome do pedido" required/>
             <label htmlFor="price">Preço do pedido</label>
