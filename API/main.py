@@ -30,9 +30,9 @@ async def rate_limit_middleware(request: Request, call_next):
             content={"message": "Limit of 30 requests/second exceeded"},
         )
 
-        requests_by_ip[ip].append(now)
+    requests_by_ip[ip].append(now)
 
-        return await call_next(request)
+    return await call_next(request)
 
 
 origins = os.getenv("FRONTEND_URLS").split(",")
