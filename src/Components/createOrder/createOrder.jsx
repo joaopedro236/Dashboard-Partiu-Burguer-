@@ -1,5 +1,13 @@
 import "./createOrder.css"
+import { useState } from "react"
+import createOrderRequisition from "../../Requisitions/createOrder"
 export default function CreateOrder(){
+    const [loading, setLoading] = useState(false)
+    const handleSubmit = (e) => {
+        const resultInputs = new FormData(e.target)
+        const file = e.target.file.files[0]
+        createOrderRequisition(setLoading,resultInputs)
+    }
     return(
         <>
         <section className="CreateOrder flex flex-col gap-1 w-full ">
@@ -16,7 +24,7 @@ export default function CreateOrder(){
             <input type="file" name="image" id="image" placeholder="imagem do pedido"/>
             <label htmlFor="description">Descrição do pedido</label>
             <textarea name="description" id="description" placeholder="Sua descrição"></textarea>
-            <button type="submit">Enviar</button>
+            <button type="submit">{loading ? "Carregando" : "Enviar"}</button>
             </form>
         </section>
         </>
