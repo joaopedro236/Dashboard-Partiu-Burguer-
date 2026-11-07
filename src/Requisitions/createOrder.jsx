@@ -7,7 +7,7 @@ export default async function createOrderRequisition(setLoading,  resultInputs){
             body: resultInputs
         })
         const data = await response.json()
-        if (data?.Status) {alert("Pedido cadastro")}
+        if (data?.Status) {alert("Pedido cadastrado")}
         if (data?.Error) {alert(data?.Error)}
     }catch(error) {
         console.error(error)

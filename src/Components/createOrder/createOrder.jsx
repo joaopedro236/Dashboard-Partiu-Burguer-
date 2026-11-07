@@ -3,11 +3,11 @@ import { useState } from "react"
 import createOrderRequisition from "../../Requisitions/createOrder"
 export default function CreateOrder(){
     const [loading, setLoading] = useState(false)
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const resultInputs = new FormData(e.target)
         
-        createOrderRequisition(setLoading,resultInputs)
+        await createOrderRequisition(setLoading,resultInputs)
     }
     return(
         <>
