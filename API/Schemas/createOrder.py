@@ -5,4 +5,5 @@ class createOrderSchema(BaseModel):
     name: str
     description: str
     image_url: str
-    price: int
+    price: float
+ 
