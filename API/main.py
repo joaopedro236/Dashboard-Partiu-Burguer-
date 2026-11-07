@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request
-from ..API.Routers.createOrder import router as createOrder
-from ..API.Databases.Database.Orders import createDatabaseOrders
+from API.Routers.createOrder import router as createOrder
+from API.Databases.Database.Orders import createDatabaseOrders
 from fastapi.responses import JSONResponse
 import time
 from collections import defaultdict
