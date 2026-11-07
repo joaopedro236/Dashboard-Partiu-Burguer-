@@ -4,6 +4,7 @@ import createOrderRequisition from "../../Requisitions/createOrder"
 export default function CreateOrder(){
     const [loading, setLoading] = useState(false)
     const handleSubmit = (e) => {
+        e.preventDefault();
         const resultInputs = new FormData(e.target)
         const file = e.target.file.files[0]
         createOrderRequisition(setLoading,resultInputs)
@@ -17,13 +18,13 @@ export default function CreateOrder(){
             </header>
             <form>
                 <label htmlFor="name">Nome do pedido</label>
-            <input type="text" name="name" id="name" placeholder="Nome do pedido"/>
+            <input type="text" name="name" id="name" placeholder="Nome do pedido" required/>
             <label htmlFor="price">Preço do pedido</label>
-            <input type="number" name="price" id="price" placeholder="Preço do pedido"/>
+            <input type="number" name="price" id="price" placeholder="Preço do pedido" required/>
             <label htmlFor="file">Imagem do pedido</label>
-            <input type="file" name="image" id="image" placeholder="imagem do pedido"/>
+            <input type="file" name="image" id="image" placeholder="imagem do pedido" required/>
             <label htmlFor="description">Descrição do pedido</label>
-            <textarea name="description" id="description" placeholder="Sua descrição"></textarea>
+            <textarea name="description" id="description" placeholder="Sua descrição" required></textarea>
             <button type="submit">{loading ? "Carregando" : "Enviar"}</button>
             </form>
         </section>
