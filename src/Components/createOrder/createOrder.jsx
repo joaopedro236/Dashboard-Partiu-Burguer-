@@ -20,7 +20,8 @@ export default function CreateOrder(){
                 <label htmlFor="name">Nome do pedido</label>
             <input type="text" name="name" id="name" placeholder="Nome do pedido" required/>
             <label htmlFor="price">Preço do pedido</label>
-            <input type="number" name="price" id="price" step="0.01"placeholder="Preço do pedido" required/>
+            <input type="number" name="price" id="price" step="any"
+                min="0" placeholder="Preço do pedido" required/>
             <label htmlFor="file">Imagem do pedido</label>
             <input type="file" name="file" id="file" placeholder="imagem do pedido" required/>
             <label htmlFor="description">Descrição do pedido</label>
