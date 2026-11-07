@@ -6,7 +6,7 @@ export default function CreateOrder(){
     const handleSubmit = (e) => {
         e.preventDefault();
         const resultInputs = new FormData(e.target)
-        const file = e.target.image.files[0]
+        
         createOrderRequisition(setLoading,resultInputs)
     }
     return(
@@ -22,7 +22,7 @@ export default function CreateOrder(){
             <label htmlFor="price">Preço do pedido</label>
             <input type="number" name="price" id="price" placeholder="Preço do pedido" required/>
             <label htmlFor="file">Imagem do pedido</label>
-            <input type="file" name="image" id="image" placeholder="imagem do pedido" required/>
+            <input type="file" name="file" id="file" placeholder="imagem do pedido" required/>
             <label htmlFor="description">Descrição do pedido</label>
             <textarea name="description" id="description" placeholder="Sua descrição" required></textarea>
             <button type="submit">{loading ? "Carregando" : "Enviar"}</button>
