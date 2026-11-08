@@ -2,6 +2,7 @@
     background-color: #00000033;
     right: 10px;
     z-index:50;
+    color:var(--white);
     top: 10px;
 }
 .menu {
