@@ -1,0 +1,13 @@
+.buttonMenu {
+    background-color: #00000033;
+    right: 10px;
+    z-index:50;
+    top: 10px;
+}
+.menu {
+    left: 0;
+    top:0;
+    background: var(--menu-color);
+    z-index: 100;
+    border:  1px solid rgba(255, 255, 255, 0.1);
+}
