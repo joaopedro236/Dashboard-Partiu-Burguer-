@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "./Menu.css"
 export default function Menu({setSection}) {
     const [menuActive, setMenuActive] = useState(false)
     return (
