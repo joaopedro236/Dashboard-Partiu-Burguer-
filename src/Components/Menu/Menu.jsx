@@ -6,7 +6,7 @@ export default function Menu({setSection}) {
         <>
         <button className="buttonMenu absolute rounded-sm" onClick={() => setMenuActive(prev => !prev)  }>☰</button>
         <section className={`menu ${menuActive ? "flex" :"hidden"} fixed h-screen flex items-center flex-col  justify-center`}>
-            <ul className=" flex-col  items-center justify-center text-center">
+            <ul className="flex flex-col  items-center justify-center text-center">
                 <li onClick={() => {
                     setSection("createOrder")
                     setMenuActive(false)
