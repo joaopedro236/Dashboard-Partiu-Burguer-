@@ -1,5 +1,6 @@
 .OrdersSection {
   background: var(--bg-primary);
+  gap: 10px;
   padding:20px;
   width: 100%;
   
