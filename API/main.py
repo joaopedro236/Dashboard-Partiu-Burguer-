@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from API.Routers.createOrder import router as createOrder
 from API.Databases.Database.Orders import createDatabaseOrders
 from fastapi.responses import JSONResponse
+from API.Routers.getOrder import router as getOrder
 import time
 from collections import defaultdict
 import os
@@ -46,6 +47,7 @@ app.add_middleware(
     expose_headers=["Set-Cookie"],
 )
 app.include_router(createOrder)
+app.include_router(getOrder)
 @app.on_event("startup")
 def startup():
     createDatabaseOrders()

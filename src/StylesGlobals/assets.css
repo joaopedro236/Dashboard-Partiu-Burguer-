@@ -1,6 +1,8 @@
 body {
   font-family: sans-serif;
   color: white;
+  width: 100%;
+  min-height: 100vh;
   background: var(--bg-primary);
 }
 h1 {
