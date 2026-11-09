@@ -5,7 +5,7 @@ export default async function getOrder(setOrder){
         if (data?.Error) {
             console.error(data?.Error)
         }
-        setOrder(data)
+        setOrder(Array.isArray(data) ? data : [])
     }catch(error) {
         console.error(error)
     }

@@ -1,8 +1,8 @@
 import "./orders.css"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import getOrder from "../../Requisitions/getOrderRequisition"
 export default function Orders({section}){
-    const [order, setOrder] = useState({})
+    const [order, setOrder] = useState([])
     useEffect(() => {
             getOrder(setOrder)
             }, [])
@@ -20,7 +20,7 @@ export default function Orders({section}){
                         <img src={orderMap?.Imagem_url}alt="photo order" />
                         <h1>{orderMap?.Name}</h1>
                         <p>{orderMap?.Description}</p>
-                        <p>{orderMap?. Price}</p>
+                        <p>{orderMap?.Price}</p>
                         <button>Ativo</button>
                     </div>
                 ))}
