@@ -14,7 +14,7 @@ export default function Orders({section}){
                 <h1>Seu cardapio</h1>
                 <p>Veja seu cardápio e escolha o que os cliente irão ver</p>
             </header>
-            <div className="orders flex flex-wrap">
+            <div className="orders ">
                 {order.map((orderMap, index) =>(
                     <div className="order" key={index}>
                         <img src={orderMap?.Imagem_url}alt="photo order" />
