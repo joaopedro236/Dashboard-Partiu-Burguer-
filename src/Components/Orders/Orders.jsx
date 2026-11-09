@@ -9,12 +9,12 @@ export default function Orders({section}){
     
     return(
         <>
-        <section className={`OrdersSection  flex-col ${section == "Order" ? "flex" : "none"} flex-col`}>
+        <section className={`OrdersSection  flex-col ${section == "Order" ? "flex" : "hidden"} flex-col`}>
             <header className="flex flex-col gap-1">
                 <h1>Seu cardapio</h1>
                 <p>Veja seu cardápio e escolha o que os cliente irão ver</p>
             </header>
-            <div className="orders ">
+            <div className="orders mt-2 ">
                 {order.map((orderMap, index) =>(
                     <div className="order" key={index}>
                         <img src={orderMap?.Imagem_url}alt="photo order" />
