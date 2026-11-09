@@ -17,7 +17,8 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 15px;
+  margin-top: 20px;
   
 }
 .order {
@@ -80,6 +81,13 @@
 .order button:hover {
   background: #16653466;
   border-color: #22c55e;
+}
+@media (min-width:500px) {
+  .orders{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: initial;
+  }
 }
 @media (hover:hover){
   .order:hover {
