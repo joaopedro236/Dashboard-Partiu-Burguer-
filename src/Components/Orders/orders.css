@@ -1,5 +1,7 @@
 .OrdersSection {
   background: var(--bg-primary);
+  padding:20px;
+  width: 100%;
   
 }
 .OrdersSection header p {
