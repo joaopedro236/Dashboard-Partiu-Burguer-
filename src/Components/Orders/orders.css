@@ -20,7 +20,7 @@
 }
 .order {
   width: 100%;
-  max-width: 550px;
+  
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -89,7 +89,9 @@
   .orders {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    
   }
-  
+  .order{
+    max-width:450px;
+  }
 }
