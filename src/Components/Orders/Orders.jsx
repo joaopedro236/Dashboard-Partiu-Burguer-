@@ -2,8 +2,11 @@ import "./orders.css"
 import { useState } from "react"
 import getOrder from "../../Requisitions/getOrderRequisition"
 export default function Orders({section}){
-    const [order, setOrder] = useState(null)
-    getOrder(setOrder)
+    const [order, setOrder] = useState({})
+    useEffect(() => {
+            getOrder(setOrder)
+            }, [])
+    
     return(
         <>
         <section className={`OrdersSection ${section == "Order" ? "flex" : "none"} flex-col`}>
