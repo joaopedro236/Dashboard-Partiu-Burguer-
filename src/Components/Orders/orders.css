@@ -1,5 +1,5 @@
 .OrdersSection {
-  background: var(--bg-primary);
+  
   gap: 10px;
   
   padding:20px;
@@ -82,7 +82,7 @@
   background: #16653466;
   border-color: #22c55e;
 }
-@media (min-width:500px) {
+@media (min-width:450px) {
   .orders{
     display: flex;
     flex-direction: column;
