@@ -9,7 +9,7 @@ export default function Orders({section}){
     
     return(
         <>
-        <section className={`OrdersSection  flex flex-col ${section == "Order" ? "flex" : "none"} flex-col`}>
+        <section className={`OrdersSection  flex-col ${section == "Order" ? "flex" : "none"} flex-col`}>
             <header className="flex flex-col gap-1">
                 <h1>Seu cardapio</h1>
                 <p>Veja seu cardápio e escolha o que os cliente irão ver</p>
