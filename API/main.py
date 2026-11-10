@@ -4,6 +4,7 @@ from API.Databases.Database.Orders import createDatabaseOrders
 from fastapi.responses import JSONResponse
 from API.Routers.getOrder import router as getOrder
 from API.Routers.changeStateOrder import router as chargeStateOrder
+from API.Routers.authorization import router as authorization
 import time
 from collections import defaultdict
 import os
@@ -50,6 +51,7 @@ app.add_middleware(
 app.include_router(createOrder)
 app.include_router(getOrder)
 app.include_router(chargeStateOrder)
+app.include_router(authorization)
 
 
 @app.on_event("startup")
