@@ -11,7 +11,7 @@ def IPVerification():
         data = response.json()
         ip = data['ip']
         if ip != str(authorizedIP).strip():
-            return{'Status': False, 'Error': 'Your IP is not authorized/ Seu IP não esta autorizado'}
+            return{'Status': False, 'Error': 'Your IP is not authorized/ Seu IP não esta autorizado', 'ip': ip}
         return {'Status': True}
     except Exception as e:
-        return{'Status': False, 'Error': str(e)}
+        return{'Status': False, 'Error': str(e), 'ip': ip}
