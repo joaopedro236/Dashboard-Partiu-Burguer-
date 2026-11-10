@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from ..Schemas.createOrder import createOrderSchema
 import requests
 from fastapi import APIRouter, Request, Form, UploadFile, File
-
+from ..Verification.IPVerification import IPVerification
 load_dotenv(encoding="utf-8")
 IMGBB_URL = os.getenv("IMGBB_URL")
 router = APIRouter()
@@ -22,6 +22,9 @@ async def createOrder(
     conn = None
     cursor = None
     try:
+        ipVeriicationResponse = IPVerification()
+        if ipVeriicationResponse['Status'] == False:
+            return ipVeriicationResponse
         conn, cursor = connect_database_Order()
         await file.seek(0)
         content = await file.read()

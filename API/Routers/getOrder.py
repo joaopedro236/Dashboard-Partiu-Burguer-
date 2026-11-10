@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from ..Databases.Conn.Orders import connect_database_Order, pool_Order
 from ..Databases.Conn.release_database import release_database
-
+from ..Verification.IPVerification import IPVerification
 router = APIRouter()
 
 
@@ -10,16 +10,20 @@ def getOrder():
     conn = None
     cursor = None
     try:
+        ipVeriicationResponse = IPVerification()
+        if ipVeriicationResponse['Status'] == False:
+            return ipVeriicationResponse
         conn, cursor = connect_database_Order()
-        cursor.execute("select name, description, image_url ,price, active from Orders")
+        cursor.execute("select id, name, description, image_url ,price, active from Orders")
         result = cursor.fetchall()
         return [
             {
-                "Name": row[0],
-                "Description": row[1],
-                "Imagem_url": row[2],
-                "Price": row[3],
-                "Active": row[4],
+                'Id': row[0],
+                "Name": row[1],
+                "Description": row[2],
+                "Imagem_url": row[3],
+                "Price": row[4],
+                "Active": row[5],
             }
             for row in result
         ]

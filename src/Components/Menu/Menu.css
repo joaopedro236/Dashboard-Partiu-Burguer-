@@ -20,3 +20,6 @@
 .menu ul {
   gap: 7px;
 }
+.menu ul li {
+  cursor: pointer;
+}

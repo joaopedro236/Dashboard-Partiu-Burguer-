@@ -1,4 +1,5 @@
 import "./orders.css"
+import chargeStateOrder from "../../Requisitions/chargeStateOrderRequisition"
 import { useState, useEffect } from "react"
 import getOrder from "../../Requisitions/getOrderRequisition"
 export default function Orders({section}){
@@ -16,12 +17,13 @@ export default function Orders({section}){
             </header>
             <div className="orders ">
                 {order.map((orderMap, index) =>(
-                    <div className="order" key={index}>
+                    <div className="order" key={index}  onClick={()=> getOrder(orderMap?.Id)}>
                         <img src={orderMap?.Imagem_url}alt="photo order" />
                         <h1>{orderMap?.Name}</h1>
                         <p>{orderMap?.Description}</p>
                         <p>R${orderMap?.Price}</p>
-                        <button>Ativo</button>
+                        
+                        <button className={`${orderMap?.Active ? '' : 'Deactivate'}`}>{orderMap?.Active ? 'Ativo' : 'Desativo'}</button>
                     </div>
                 ))}
             </div>

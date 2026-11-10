@@ -77,10 +77,19 @@
   cursor: pointer;
   transition: 0.2s;
 }
-
 .order button:hover {
   background: #16653466;
   border-color: #22c55e;
+}
+.order button.Deactivate{
+  border: 1px solid #651616;
+
+  background: #53141433;
+  color: #de4a4a;
+}
+.order button.Deactivate:hover {
+  background: #65161666;
+  border-color: #c52222;
 }
 @media (max-width:450px) {
   .orders{

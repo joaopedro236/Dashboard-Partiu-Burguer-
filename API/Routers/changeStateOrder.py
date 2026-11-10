@@ -2,12 +2,16 @@ from ..Schemas.changeStateOrder import acquireOrderID
 from ..Databases.Conn.release_database import release_database
 from ..Databases.Conn.Orders import connect_database_Order, pool_Order
 from fastapi import APIRouter
+from ..Verification.IPVerification import IPVerification
 router = APIRouter()
 @router.put("/chargeStateOrder")
 def changeStateOrder(orderId: acquireOrderID):
     conn = None
     cursor = None
     try:
+        ipVeriicationResponse = IPVerification()
+        if ipVeriicationResponse['Status'] == False:
+            return ipVeriicationResponse
         conn, cursor = connect_database_Order()
         cursor.execute("""
         update Orders
