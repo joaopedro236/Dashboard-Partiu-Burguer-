@@ -17,7 +17,7 @@ export default function Orders({section}){
             </header>
             <div className="orders ">
                 {order.map((orderMap, index) =>(
-                    <div className="order" key={index}  onClick={()=> getOrder(orderMap?.Id)}>
+                    <div className="order" key={index}  onClick={()=> chargeStateOrder(orderMap?.Id)}>
                         <img src={orderMap?.Imagem_url}alt="photo order" />
                         <h1>{orderMap?.Name}</h1>
                         <p>{orderMap?.Description}</p>
