@@ -11,7 +11,7 @@ def changeStateOrder(orderId: acquireOrderID):
         conn, cursor = connect_database_Order()
         cursor.execute("""
         update Orders
-        set active  = not active where id = %s""", (orderId.id))
+        set active  = not active where id = %s""", (orderId.id,))
         conn.commit()
         return {"Status": True}
     except Exception as e:
