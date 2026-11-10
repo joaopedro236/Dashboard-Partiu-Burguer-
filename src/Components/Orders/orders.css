@@ -82,7 +82,7 @@
   background: #16653466;
   border-color: #22c55e;
 }
-@media (min-width:450px) {
+@media (max-width:450px) {
   .orders{
     display: flex;
     flex-direction: column;
