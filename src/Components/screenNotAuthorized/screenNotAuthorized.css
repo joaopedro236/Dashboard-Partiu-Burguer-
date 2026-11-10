@@ -1,7 +1,0 @@
-.screenNotAuthorized {
-    background: var(--bg-primary);
-}
-.screenNotAuthorized p {
-    color: var(--text-gray);
-}
-
