@@ -17,13 +17,13 @@ export default function Orders({section}){
             </header>
             <div className="orders ">
                 {order.map((orderMap, index) =>(
-                    <div className="order" key={index}  onClick={()=> chargeStateOrder(orderMap?.Id)}>
+                    <div className="order" key={index}  >
                         <img src={orderMap?.Imagem_url}alt="photo order" />
                         <h1>{orderMap?.Name}</h1>
                         <p>{orderMap?.Description}</p>
                         <p>R${orderMap?.Price}</p>
                         
-                        <button className={`${orderMap?.Active ? '' : 'Deactivate'}`}>{orderMap?.Active ? 'Ativo' : 'Desativo'}</button>
+                        <button onClick={()=> chargeStateOrder(orderMap?.Id)} className={`${orderMap?.Active ? '' : 'Deactivate'}`}>{orderMap?.Active ? 'Ativo' : 'Desativo'}</button>
                     </div>
                 ))}
             </div>
