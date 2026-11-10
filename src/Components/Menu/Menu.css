@@ -1,7 +1,7 @@
 .buttonMenu {
   background-color: #00000033;
   right: 15px;
-
+  cursor: pointer;
   z-index: 50;
   padding: 6px;
   color: var(--white);

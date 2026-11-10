@@ -23,7 +23,9 @@ export default function Orders({section}){
                         <p>{orderMap?.Description}</p>
                         <p>R${orderMap?.Price}</p>
                         
-                        <button onClick={()=> chargeStateOrder(orderMap?.Id)} className={`${orderMap?.Active ? '' : 'Deactivate'}`}>{orderMap?.Active ? 'Ativo' : 'Desativo'}</button>
+                        <button onClick={()=> {
+                            chargeStateOrder(orderMap?.Id) 
+                            getOrder(setOrder)}} className={`${orderMap?.Active ? '' : 'Deactivate'}`}>{orderMap?.Active ? 'Ativo' : 'Desativo'}</button>
                     </div>
                 ))}
             </div>
