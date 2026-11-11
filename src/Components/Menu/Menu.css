@@ -11,7 +11,7 @@
   left: 0;
   top: 0;
   background: var(--menu-color);
-  z-index: 100;
+  z-index: 40;
   max-width: 450px;
   width: 100%;
   backdrop-filter: blur(6px);
