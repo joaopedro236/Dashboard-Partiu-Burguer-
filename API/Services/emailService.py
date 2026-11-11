@@ -1,4 +1,5 @@
 
+import email
 import os
 import smtplib
 
@@ -29,6 +30,8 @@ def send_email(code: str):
     msg["From"] = email
     msg["To"] = owner
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+    with smtplib.SMTP("smtp.gmail.com", 587, timeout=30) as server:
+        server.starttls()
         server.login(email, password)
         server.send_message(msg)
+    
