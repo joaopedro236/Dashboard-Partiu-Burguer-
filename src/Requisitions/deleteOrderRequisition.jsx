@@ -7,7 +7,8 @@ export default async function deleteOrderRequisition(name) {
             },
             body: JSON.stringify({
                 orderName: name,
-            })
+            }),
+    credentials: 'include'
         })
         const data = await response.json()
         if (data?.Error){

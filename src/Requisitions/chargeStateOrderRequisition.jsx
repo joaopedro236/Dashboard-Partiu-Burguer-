@@ -4,7 +4,9 @@ export default async function chargeStateOrder(idOrder) {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
-            },
+            }
+            ,
+            credentials: 'include',
             body: JSON.stringify({
                 id: idOrder
             })
