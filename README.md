@@ -1,103 +1,191 @@
-# Partiu Burguer — Dashboard
+<div align="center">
 
-> **Projeto em desenvolvimento.** Este repositório está sendo construído e pode mudar; algumas funcionalidades e instruções ainda podem ser ajustadas.
+# 🍔 Partiu Burguer — Dashboard
 
-Dashboard para apoiar o gerenciamento do menu e dos pedidos do Partiu Burguer. A aplicação está organizada em uma interface web e uma API, com funcionalidades de criação e consulta de pedidos, atualização de status e autorização.
+**A web dashboard for managing restaurant menu items and orders.**
 
-## Tecnologias
+Built with React and FastAPI, the application provides tools to create menu items, manage orders, and securely access the dashboard.
 
-- **Frontend:** React, JavaScript, Vite e Tailwind CSS
-- **Backend:** Python e FastAPI
-- **Banco de dados e serviços:** dependências para PostgreSQL e Redis estão incluídas na API
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![Python](https://img.shields.io/badge/Python-3-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-API-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Redis](https://img.shields.io/badge/Redis-Cache%20and%20sessions-DC382D?logo=redis&logoColor=white)](https://redis.io/)
 
-## Estrutura do projeto
+<br />
+
+<img src="https://skillicons.dev/icons?i=react,js,vite,tailwind,python,fastapi,postgres,redis" alt="Technologies: React, JavaScript, Vite, Tailwind CSS, Python, FastAPI, PostgreSQL, Redis" />
+
+</div>
+
+---
+
+## About
+
+Partiu Burguer is a restaurant management dashboard with a React frontend and a Python API. It supports creating menu items with image uploads, viewing and managing orders, and protecting dashboard actions with email verification.
+
+> **Project status:** In development. Features, setup instructions, and configuration may change.
+
+## Features
+
+- Create menu items with a name, description, price, category, and image.
+- View orders and update their status.
+- Delete orders.
+- Protect dashboard operations with email verification and cookie-based authorization.
+- Store order data in PostgreSQL and temporary verification and authorization data in Redis.
+- Upload menu images through ImgBB.
+- Configure allowed frontend origins for the API using CORS.
+
+## Technology stack
+
+| Area | Technologies |
+| --- | --- |
+| Frontend | React 19, JavaScript, Vite, Tailwind CSS 4 |
+| Backend | Python, FastAPI, Uvicorn |
+| Database | PostgreSQL (`psycopg2`) |
+| Cache and temporary authorization data | Redis |
+| Integrations | ImgBB image hosting, Mailjet email delivery |
+| Tooling | pnpm, Oxlint |
+
+## Project structure
 
 ```text
 .
-├── API/                 # API FastAPI, rotas, serviços e acesso a dados
-│   ├── Databases/
-│   ├── Routers/
-│   ├── Schemas/
-│   └── Services/
-├── src/                 # Interface React
-│   ├── Components/
-│   ├── Requisitions/
-│   └── StylesGlobals/
+├── API/
+│   ├── Databases/       # PostgreSQL and Redis connections and database setup
+│   ├── Middlewares/     # Authentication middleware
+│   ├── Routers/         # Order and authorization endpoints
+│   ├── Schemas/         # API request schemas
+│   ├── Services/        # External services, including email
+│   ├── Verification/    # Verification code handling
+│   ├── main.py          # FastAPI application
+│   └── requirements.txt
+├── public/              # Static frontend assets
+├── src/
+│   ├── Components/      # React UI components
+│   ├── Requisitions/    # Frontend API requests
+│   └── StylesGlobals/   # Global styles
+├── index.html
 ├── package.json
-└── README.md
+├── pnpm-lock.yaml
+└── vite.config.js
 ```
 
-## Requisitos
+## Requirements
 
-- Node.js e pnpm
+- Node.js and [pnpm](https://pnpm.io/)
 - Python 3
-- Serviços de banco de dados ou cache necessários para as funcionalidades que você executar
+- A PostgreSQL database
+- A Redis instance
+- ImgBB API key and Mailjet credentials for image uploads and email verification
 
-## Como executar
+## Getting started
 
-### Frontend
-
-Na raiz do repositório:
+Clone the repository and install the frontend dependencies:
 
 ```bash
+git clone https://github.com/joaopedro236/Dashboard-Partiu-Burguer-.git
+cd Dashboard-Partiu-Burguer-
 pnpm install
+```
+
+### Configure environment variables
+
+Create a `.env` file in the repository root. Set the values for your own services and credentials:
+
+```dotenv
+# Frontend URL allowed to make credentialed requests to the API
+FRONTEND_URLS=http://localhost:5173
+
+# API URL used by the Vite frontend
+VITE_API_URL=http://localhost:8000
+
+# PostgreSQL connection settings
+# Note: the application currently uses the variable name db_post_Order.
+db_host_Order=localhost
+db_post_Order=5432
+db_database_Order=partiu_burguer
+db_user_Order=your_database_user
+db_password_Order=your_database_password
+
+# Redis connection URL (use rediss:// for TLS connections)
+REDIS_URL=redis://localhost:6379/0
+
+# ImgBB API key used for menu image uploads
+IMGBB_URL=your_imgbb_api_key
+
+# Mailjet credentials used for email verification
+MAILJET_API_KEY=your_mailjet_api_key
+MAILJET_SECRET_KEY=your_mailjet_secret_key
+MAILJET_SENDER=verified-sender@example.com
+Authorized_Email=dashboard-owner@example.com
+```
+
+Do not commit real credentials or production secrets. Use the actual frontend URL in `FRONTEND_URLS`; multiple origins can be comma-separated. The frontend and API both read this root `.env` file through Vite and `python-dotenv` respectively.
+
+### Start the frontend
+
+```bash
 pnpm dev
 ```
 
-O Vite exibirá no terminal o endereço local da aplicação. Para gerar uma versão de produção ou executá-la localmente:
+Vite prints the local development URL in the terminal (typically `http://localhost:5173`). Make sure `VITE_API_URL` points to the running API.
 
-```bash
-pnpm build
-pnpm preview
-```
+### Start the API
 
-### API
-
-Na raiz do repositório, crie e ative um ambiente virtual e instale as dependências:
+Create and activate a Python virtual environment from the repository root:
 
 ```bash
 python -m venv .venv
 ```
 
-No macOS/Linux:
+macOS/Linux:
 
 ```bash
 source .venv/bin/activate
 ```
 
-No Windows PowerShell:
+Windows PowerShell:
 
 ```powershell
 .venv\Scripts\Activate.ps1
 ```
 
-Em seguida:
+Install the API dependencies and run the development server:
 
 ```bash
 pip install -r API/requirements.txt
-```
-
-Configure as variáveis de ambiente necessárias em um arquivo `.env` na raiz. A API usa `FRONTEND_URLS` para configurar as origens permitidas pelo CORS; informe as URLs do frontend separadas por vírgula. Confira também as configurações exigidas pelos serviços e integrações habilitados no ambiente.
-
-Inicie a API com:
-
-```bash
 uvicorn API.main:app --reload
 ```
 
-## Scripts disponíveis
+The API uses the PostgreSQL and Redis settings from `.env`. The database table is initialized when the API starts. The application currently disables the built-in `/docs`, `/redoc`, and `/openapi.json` routes.
 
-| Comando | Descrição |
+## Available frontend scripts
+
+| Command | Description |
 | --- | --- |
-| `pnpm dev` | Inicia o servidor de desenvolvimento do frontend |
-| `pnpm build` | Gera a build de produção do frontend |
-| `pnpm preview` | Pré-visualiza a build localmente |
-| `pnpm lint` | Executa o Oxlint |
+| `pnpm dev` | Start the Vite development server |
+| `pnpm build` | Create a production build |
+| `pnpm preview` | Preview the production build locally |
+| `pnpm lint` | Run Oxlint |
 
-## Contribuições
+## API capabilities
 
-Como o projeto ainda está em desenvolvimento, sugestões, relatos de problemas e melhorias são bem-vindos. Abra uma issue ou envie um pull request.
+The API currently includes routes for:
 
-## Status
+- Creating menu items (`POST /createOrder`)
+- Retrieving orders (`GET /getOrder`)
+- Changing an order's status (`POST /changeStateOrder`)
+- Deleting orders (`DELETE /deleteOrder`)
+- Checking authorization (`GET /authorization`)
+- Sending and validating email verification codes (`POST /send-verification`, `POST /verify-code`)
 
-Em desenvolvimento 🚧
+All endpoints other than the authorization and verification flow require a valid authorization cookie. Refer to the router files in `API/Routers/` for the request formats and current behavior.
+
+## Contributing
+
+Contributions, suggestions, and bug reports are welcome. Open an issue to discuss a change or submit a pull request. Since the project is under active development, consider checking existing issues before starting larger changes.
+
+## License
+
+No license has been specified for this repository yet. Contact the repository owner before redistributing or reusing the project.
