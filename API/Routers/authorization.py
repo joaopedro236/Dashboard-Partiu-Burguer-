@@ -1,5 +1,9 @@
 from fastapi import APIRouter, Request
+from API.Databases.Conn.redis import r
+
 router = APIRouter()
+
+
 @router.get("/authorization")
 def authorization(request: Request):
 
