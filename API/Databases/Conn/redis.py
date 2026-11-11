@@ -11,4 +11,4 @@ if not redis_url:
 if not redis_url.startswith(("redis://", "rediss://")):
     raise ValueError("REDIS_URL must start with redis:// or rediss://")
 
-r = redis.Redis.from_url(redis_url, decode_responses=True)
+redis = redis.Redis.from_url(redis_url, decode_responses=True)

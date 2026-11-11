@@ -2,7 +2,7 @@
 from fastapi import APIRouter, HTTPException, Response
 from ..Schemas.verificationEmail import VerificationRequest
 import secrets
-from API.Databases.Conn.redis import r
+from API.Databases.Conn.redis import redis
 from API.Verification.codeVerification import (
 
     verify_code
@@ -17,9 +17,9 @@ def validate_code(data: VerificationRequest, response: Response):
             status_code=400,
             detail="Código incorreto, expirado ou inválido."
         )
-    r.delete("owner_verification")
+    redis.delete("owner_verification")
     token = secrets.token_urlsafe(32)
-    r.set(
+    redis.set(
             f"authorized:{token}",
             "1",
             ex=28800

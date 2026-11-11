@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request
-from API.Databases.Conn.redis import r
+from API.Databases.Conn.redis import redis
 
 router = APIRouter()
 
@@ -12,7 +12,7 @@ def authorization(request: Request):
     if not token:
         return {"Status": False}
 
-    if not r.exists(f"authorized:{token}"):
+    if not redis.exists(f"authorized:{token}"):
         return {"Status": False}
 
     return {"Status": True}

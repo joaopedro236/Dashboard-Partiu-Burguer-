@@ -7,13 +7,13 @@ from API.Routers.validateCode import router as validateCode
 from API.Routers.sendVerification import router as sendVerification
 from API.Routers.changeStateOrder import router as chargeStateOrder
 from API.Routers.authorization import router as authorization
+from API.Middlewares.AuthMiddleware import AuthMiddleware
 import time
 from collections import defaultdict
 import os
 from dotenv import load_dotenv
 
 app = FastAPI()
-
 from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
@@ -50,6 +50,7 @@ app.add_middleware(
     allow_headers=["*"],
     expose_headers=["Set-Cookie"],
 )
+app.middleware("http")(AuthMiddleware)
 app.include_router(createOrder)
 app.include_router(getOrder)
 app.include_router(chargeStateOrder)
