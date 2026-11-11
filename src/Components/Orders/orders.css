@@ -6,12 +6,15 @@
   width: 100%;
   
 }
+.OrdersSection header {
+  padding: 20px;
+}
 .OrdersSection header p {
   color: var(--text-gray);
-  font-size: 13.5px;
+  font-size: 14px;
 }
 .OrdersSection header h1{
-  font-size: 27px;
+  font-size: 30px;
 }
 .orders {
   width: 100%;
