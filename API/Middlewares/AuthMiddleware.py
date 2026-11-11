@@ -8,6 +8,8 @@ PUBLIC_ROUTES = [
     "/sendVerification"
 ]
 async def AuthMiddleware(request: Request, call_next):
+    if request.method == "OPTIONS":
+        return await call_next(request)
     if request.url.path in ["/docs", "/redoc", "/openapi.json"]:
         return JSONResponse(status_code=404, content={"detail": "Not Found"})
     if request.url.path in PUBLIC_ROUTES:
