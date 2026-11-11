@@ -7,21 +7,22 @@ from API.Verification.codeVerification import (
 router = APIRouter()
 @router.post("/send-verification")
 def send_verification():
-
-    if r.exists("verification_cooldown"):
-        raise HTTPException(
-            status_code=429,
-            detail="Aguarde antes de solicitar outro código."
-        )
-
-    code = generate_code()
-
-    r.set("owner_verification", code, ex=300)
-    r.set("verification_cooldown", "1", ex=60)
-
     try:
-        send_email(code)
+        if r.exists("verification_cooldown"):
+            raise HTTPException(
+                status_code=429,
+                detail="Aguarde antes de solicitar outro código."
+            )
 
+        code = generate_code()
+
+        r.set("owner_verification", code, ex=300)
+        r.set("verification_cooldown", "1", ex=60)
+
+ 
+        send_email(code)
+    except HTTPException:
+        raise
     except Exception as e:
 
         r.delete(
@@ -31,7 +32,7 @@ def send_verification():
 
         raise HTTPException(
             status_code=500,
-            detail="Erro ao enviar email."
+            detail=str(e)
         )
 
     return {
