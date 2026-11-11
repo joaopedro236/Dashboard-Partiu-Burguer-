@@ -20,19 +20,19 @@ export default function Orders({ section, order, setOrder, getOrder }) {
                     <h1>Seu cardapio</h1>
                     <p>Veja seu cardápio e escolha o que os cliente irão ver</p>
                 </header>
+                <div className="filters">
+                    <select
+                        value={filterType}
+                        onChange={(e) => setFilterType(e.target.value)}
+                    >
+                        {types.map((type, index) => (
+                            <option key={index} value={type}>
+                                {type}
+                            </option>
+                        ))}
+                    </select>
+                </div>
                 <div className="orders ">
-                    <div className="filters">
-                        <select
-                            value={filterType}
-                            onChange={(e) => setFilterType(e.target.value)}
-                        >
-                            {types.map((type, index) => (
-                                <option key={index} value={type}>
-                                    {type}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
                     {filteredOrders.map((orderMap, index) => (
                         <div className="order" key={index}  >
                             <img src={orderMap?.Imagem_url} alt="photo order" />
