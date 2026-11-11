@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import getOrder from "../../Requisitions/getOrderRequisition"
 export default function Orders({ section, order, setOrder, getOrder }) {
 
-    const [filterType, setFilterType] = useState("All")
+    const [filterType, setFilterType] = useState("Todos")
 
     const types = [
         "Todos",
