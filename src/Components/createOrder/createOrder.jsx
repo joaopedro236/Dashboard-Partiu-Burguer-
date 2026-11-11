@@ -26,6 +26,14 @@ export default function CreateOrder({section}){
                 min="0" placeholder="Preço do pedido" required/>
             <label htmlFor="file">Imagem do pedido</label>
             <input type="file" name="file" id="file" placeholder="imagem do pedido" required/>
+            <label htmlFor="type">Tipo</label>
+            <select name="type" id="type" required>
+                <option value="Artersanal"></option>
+                <option value="Não Artersanal"></option>
+                <option value="Porcão"></option>
+                <option value="Bebida"></option>
+                <option value="Combo"></option>
+            </select>
             <label htmlFor="description">Descrição do pedido</label>
             <textarea name="description" id="description" placeholder="Sua descrição" required></textarea>
             <button type="submit">{loading ? "Carregando" : "Enviar"}</button>

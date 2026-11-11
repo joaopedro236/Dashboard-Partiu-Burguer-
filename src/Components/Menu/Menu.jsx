@@ -11,10 +11,6 @@ export default function Menu({setSection}) {
                     setSection("createOrder")
                     setMenuActive(false)
                 }}>Criar Pedido</li>
-                <li onClick={() => { 
-                    setSection("editOrder")
-                    setMenuActive(false)
-                }}>Editar Pedido</li>
                 <li onClick={() => {
                     setSection("Order")
                     setMenuActive(false)

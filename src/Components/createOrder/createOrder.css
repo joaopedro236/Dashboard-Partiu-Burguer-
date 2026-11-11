@@ -42,6 +42,7 @@
 }
 
 .CreateOrder form input,
+.CreateOrder form select,
 .CreateOrder form textarea {
   width: 100%;
   box-sizing: border-box;
@@ -60,16 +61,19 @@
     background 0.2s ease;
 }
 .CreateOrder form input::placeholder,
+.CreateOrder form select::placeholder,
 .CreateOrder form textarea::placeholder {
   color: #64748b;
 }
 
 .CreateOrder form input:hover,
+.CreateOrder form select:hover,
 .CreateOrder form textarea:hover {
   border-color: #3b4963;
 }
 
 .CreateOrder form input:focus,
+.CreateOrder form select:focus,
 .CreateOrder form textarea:focus {
   background: #111c30;
   border-color: #818cf8;
@@ -113,6 +117,7 @@
 }
 
 .CreateOrder form input:focus-visible,
+.CreateOrder form select:focus-visible,
 .CreateOrder form textarea:focus-visible,
 .CreateOrder form button:focus-visible {
   outline: 2px solid #818cf8;
@@ -156,6 +161,7 @@
   }
 
   .CreateOrder form input,
+  .CreateOrder form select,
   .CreateOrder form textarea {
     padding: 15px;
     font-size: 15px;

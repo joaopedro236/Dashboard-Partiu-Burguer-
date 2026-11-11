@@ -17,6 +17,7 @@ async def createOrder(
     description: str = Form(...),
     price: float = Form(...),
     file: UploadFile = File(...),
+    type: str = Form(...)
 ):
     conn = None
     cursor = None
@@ -42,15 +43,17 @@ async def createOrder(
         description,
         image_url,
         price,
-        active)
+        active,
+        type)
         VALUES(
-        %s,%s, %s, %s, %s)""",
+        %s,%s, %s, %s, %s, %s)""",
             (
                 name,
                 description,
                 save_image_data["data"]["url"],
                 price,
                 True,
+                type
             ),
         )
         conn.commit()
