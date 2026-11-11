@@ -16,3 +16,5 @@ fastapi
 psycopg2
 uvicorn
 python-multipart
+redis
+resend
