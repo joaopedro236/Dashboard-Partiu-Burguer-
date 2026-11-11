@@ -126,7 +126,7 @@
   .orders{
     display: flex;
     flex-direction: column;
-    flex-wrap: initial;
+    flex-wrap: inherit;
   }
 }
 @media (hover:hover){
@@ -137,7 +137,7 @@
 
   }
 }
-@media (min-width:768px) {
+@media (min-width:971px) {
   .orders {
     display: flex;
     flex-wrap: wrap;
@@ -145,5 +145,13 @@
   }
   .order{
     max-width:450px;
+  }
+}
+
+@media (min-width:1200px){
+  .orders {
+    display: grid;
+    
+    grid-template-columns: repeat(3, 1fr);
   }
 }
