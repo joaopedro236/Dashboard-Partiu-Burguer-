@@ -29,7 +29,7 @@ def validate_code(data: VerificationRequest, response: Response):
         value=token,
         httponly=True,
         secure=True,
-        samesite="lax",
+        samesite="none",
         max_age=28800
     )
     return {

@@ -8,7 +8,7 @@ export default async function verifyCode(code) {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                credentials: "include",
+                credentials: "include", 
                 body: JSON.stringify({
                     code: code
                 })
