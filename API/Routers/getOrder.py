@@ -9,9 +9,9 @@ def getOrder():
     conn = None
     cursor = None
     try:
-        
+
         conn, cursor = connect_database_Order()
-        cursor.execute("select id, name, description, image_url ,price, active from Orders")
+        cursor.execute("select id, name, description, image_url ,price, active from Orders ORDER BY id ASC")
         result = cursor.fetchall()
         return [
             {
