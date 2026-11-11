@@ -11,7 +11,7 @@ def getOrder():
     try:
 
         conn, cursor = connect_database_Order()
-        cursor.execute("select id, name, description, image_url ,price, active from Orders ORDER BY id ASC")
+        cursor.execute("select id, name, description, image_url ,price, active,type from Orders ORDER BY id ASC")
         result = cursor.fetchall()
         return [
             {
@@ -21,6 +21,7 @@ def getOrder():
                 "Imagem_url": row[3],
                 "Price": row[4],
                 "Active": row[5],
+                'Type': row[6]
             }
             for row in result
         ]

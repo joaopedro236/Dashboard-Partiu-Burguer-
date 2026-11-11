@@ -2,9 +2,18 @@ import "./orders.css"
 import chargeStateOrder from "../../Requisitions/chargeStateOrderRequisition"
 import { useState, useEffect } from "react"
 import getOrder from "../../Requisitions/getOrderRequisition"
-export default function Orders({ section, order,setOrder, getOrder }) {
-   
+export default function Orders({ section, order, setOrder, getOrder }) {
 
+    const [filterType, setFilterType] = useState("All")
+
+    const types = [
+        "All",
+        ...new Set(order.map(item => item.Type))
+    ]
+
+    const filteredOrders = order.filter(item =>
+        filterType === "All" || item.Type === filterType
+    )
     return (
         <>
             <section className={`OrdersSection  flex-col ${section == "Order" ? "flex" : "hidden"} flex-col`}>
@@ -13,7 +22,19 @@ export default function Orders({ section, order,setOrder, getOrder }) {
                     <p>Veja seu cardápio e escolha o que os cliente irão ver</p>
                 </header>
                 <div className="orders ">
-                    {order.map((orderMap, index) => (
+                    <div className="filters">
+                        <select
+                            value={filterType}
+                            onChange={(e) => setFilterType(e.target.value)}
+                        >
+                            {types.map((type, index) => (
+                                <option key={index} value={type}>
+                                    {type}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    {filteredOrders.map((orderMap, index) => (
                         <div className="order" key={index}  >
                             <img src={orderMap?.Imagem_url} alt="photo order" />
                             <h1>{orderMap?.Name}</h1>
