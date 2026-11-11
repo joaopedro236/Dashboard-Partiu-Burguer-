@@ -1,16 +1,103 @@
-# React + Vite
+# Partiu Burguer — Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> **Projeto em desenvolvimento.** Este repositório está sendo construído e pode mudar; algumas funcionalidades e instruções ainda podem ser ajustadas.
 
-Currently, two official plugins are available:
+Dashboard para apoiar o gerenciamento do menu e dos pedidos do Partiu Burguer. A aplicação está organizada em uma interface web e uma API, com funcionalidades de criação e consulta de pedidos, atualização de status e autorização.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tecnologias
 
-## React Compiler
+- **Frontend:** React, JavaScript, Vite e Tailwind CSS
+- **Backend:** Python e FastAPI
+- **Banco de dados e serviços:** dependências para PostgreSQL e Redis estão incluídas na API
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Estrutura do projeto
 
-## Expanding the Oxlint configuration
+```text
+.
+├── API/                 # API FastAPI, rotas, serviços e acesso a dados
+│   ├── Databases/
+│   ├── Routers/
+│   ├── Schemas/
+│   └── Services/
+├── src/                 # Interface React
+│   ├── Components/
+│   ├── Requisitions/
+│   └── StylesGlobals/
+├── package.json
+└── README.md
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Requisitos
+
+- Node.js e pnpm
+- Python 3
+- Serviços de banco de dados ou cache necessários para as funcionalidades que você executar
+
+## Como executar
+
+### Frontend
+
+Na raiz do repositório:
+
+```bash
+pnpm install
+pnpm dev
+```
+
+O Vite exibirá no terminal o endereço local da aplicação. Para gerar uma versão de produção ou executá-la localmente:
+
+```bash
+pnpm build
+pnpm preview
+```
+
+### API
+
+Na raiz do repositório, crie e ative um ambiente virtual e instale as dependências:
+
+```bash
+python -m venv .venv
+```
+
+No macOS/Linux:
+
+```bash
+source .venv/bin/activate
+```
+
+No Windows PowerShell:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+Em seguida:
+
+```bash
+pip install -r API/requirements.txt
+```
+
+Configure as variáveis de ambiente necessárias em um arquivo `.env` na raiz. A API usa `FRONTEND_URLS` para configurar as origens permitidas pelo CORS; informe as URLs do frontend separadas por vírgula. Confira também as configurações exigidas pelos serviços e integrações habilitados no ambiente.
+
+Inicie a API com:
+
+```bash
+uvicorn API.main:app --reload
+```
+
+## Scripts disponíveis
+
+| Comando | Descrição |
+| --- | --- |
+| `pnpm dev` | Inicia o servidor de desenvolvimento do frontend |
+| `pnpm build` | Gera a build de produção do frontend |
+| `pnpm preview` | Pré-visualiza a build localmente |
+| `pnpm lint` | Executa o Oxlint |
+
+## Contribuições
+
+Como o projeto ainda está em desenvolvimento, sugestões, relatos de problemas e melhorias são bem-vindos. Abra uma issue ou envie um pull request.
+
+## Status
+
+Em desenvolvimento 🚧
