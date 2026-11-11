@@ -158,3 +158,15 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+@media (min-width: 1700px){
+  .orders {
+    
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 2100px){
+  .orders {
+    
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
