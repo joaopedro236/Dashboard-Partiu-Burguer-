@@ -1,6 +1,6 @@
 import './deleteOrder.css'
 import deleteOrderRequisition from '../../Requisitions/deleteOrderRequisition'
-export default function DeleteOrder({ order }) {
+export default function DeleteOrder({ order,section }) {
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -11,7 +11,7 @@ export default function DeleteOrder({ order }) {
     }
     return (
         <>
-            <section className="deleteOrder flex gap-2.5 flex-col items-center justify-center w-full h-screen">
+            <section className={`deleteOrder ${section == 'deleteOrder' ? 'flex' : 'hidden'} gap-2.5 flex-col items-center justify-center w-full h-screen`}>
                 <header>
 
                     <h1>Deletar Pedidos</h1>

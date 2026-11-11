@@ -27,7 +27,7 @@ function App() {
       <CreateOrder section={section} />
       <Menu setSection={setSection} />
       <Orders section={section} getOrder={getOrder} order={order} setOrder={setOrder} />
-      <DeleteOrder order={order}/>
+      <DeleteOrder order={order} section={section}/>
     </>
   )
 }
