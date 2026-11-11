@@ -9,6 +9,7 @@ import Authorization from "./Components/Authorization/Authorization.jsx"
 import Orders from "./Components/Orders/Orders.jsx"
 import getOrder from "./Requisitions/getOrderRequisition.jsx"
 import DeleteOrder from "./Components/DeleteOrder/DeleteOrder.jsx"
+
 function App() {
   const [section, setSection] = useState("createOrder")
   const [authorized, setAuthorized] = useState(true)
