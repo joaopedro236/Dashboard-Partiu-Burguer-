@@ -47,7 +47,7 @@ export default function Authorization() {
     }
 
     return (
-        <section className="authorization w-full h-screen z-[999]  flex flex-col items-center justify-center text-center fixed top-[0] left-[0]">
+        <section className="authorization w-full h-screen z-[999] gap-3 flex flex-col items-center justify-center text-center fixed top-[0] left-[0]">
             <h2>Verificação de segurança</h2>
 
             {!sent ? (

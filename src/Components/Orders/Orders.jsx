@@ -2,11 +2,8 @@ import "./orders.css"
 import chargeStateOrder from "../../Requisitions/chargeStateOrderRequisition"
 import { useState, useEffect } from "react"
 import getOrder from "../../Requisitions/getOrderRequisition"
-export default function Orders({ section }) {
-    const [order, setOrder] = useState([])
-    useEffect(() => {
-        getOrder(setOrder)
-    }, [])
+export default function Orders({ section, order,setOrder, getOrder }) {
+   
 
     return (
         <>

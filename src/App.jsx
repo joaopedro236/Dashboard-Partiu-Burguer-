@@ -7,6 +7,8 @@ import authorizationRequisition from "./Requisitions/authorization.jsx"
 import CreateOrder from "./Components/createOrder/createOrder.jsx"
 import Authorization from "./Components/Authorization/Authorization.jsx"
 import Orders from "./Components/Orders/Orders.jsx"
+import getOrder from "./Requisitions/getOrderRequisition.jsx"
+import DeleteOrder from "./Components/DeleteOrder/DeleteOrder.jsx"
 function App() {
   const [section, setSection] = useState("createOrder")
   const [authorized, setAuthorized] = useState(true)
@@ -14,13 +16,17 @@ function App() {
   useEffect(() => {
     authorizationRequisition(setAuthorized)
   }, [])
+  const [order, setOrder] = useState([])
+  useEffect(() => {
+    getOrder(setOrder)
+  }, [])
   return (
     <>
       {!authorized && <Authorization />}
       <CreateOrder section={section} />
       <Menu setSection={setSection} />
-      <Orders section={section} />
-
+      <Orders section={section} getOrder={getOrder} order={order} setOrder={setOrder} />
+      <DeleteOrder order={order}/>
     </>
   )
 }
