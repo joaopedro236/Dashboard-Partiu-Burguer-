@@ -2,17 +2,21 @@ from fastapi import Request
 from fastapi.responses import JSONResponse
 from API.Databases.Conn.redis import redis
 
-PUBLIC_ROUTES = [
-    "/authorization",
-    "/validateCode",
-    "/sendVerification"
-]
+PUBLIC_ROUTES = {
+    ("GET", "/authorization"),
+    ("POST", "/verify-code"),
+    ("POST", "/send-verification"),
+}
+
+
 async def AuthMiddleware(request: Request, call_next):
     if request.method == "OPTIONS":
         return await call_next(request)
-    if request.url.path in ["/docs", "/redoc", "/openapi.json"]:
+
+    path = request.url.path.rstrip("/") or "/"
+    if path in {"/docs", "/redoc", "/openapi.json"}:
         return JSONResponse(status_code=404, content={"detail": "Not Found"})
-    if request.url.path in PUBLIC_ROUTES:
+    if (request.method, path) in PUBLIC_ROUTES:
         return await call_next(request)
 
     token = request.cookies.get("authorization")

@@ -13,6 +13,7 @@ def createDatabaseOrders():
         description text,
         image_url text,
         price numeric(10,2),
+        type text,
         active boolean)""")
         conn.commit()
     except Exception as e:
