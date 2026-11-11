@@ -28,8 +28,8 @@ export default function CreateOrder({section}){
             <input type="file" name="file" id="file" accept="image/*" placeholder="imagem do pedido" required/>
             <label htmlFor="type">Tipo</label>
             <select name="type" id="type" required>
-                <option value="Artersanal">Artersanal</option>
-                <option value="Não Artersanal">Não Artersanal</option>
+                <option value="Artersanal">Artesanal</option>
+                <option value="Não Artersanal">Não Artesanal</option>
                 <option value="Porcão">Porção</option>
                 <option value="Bebida">Bebida</option>
                 <option value="Combo">Combo</option>
