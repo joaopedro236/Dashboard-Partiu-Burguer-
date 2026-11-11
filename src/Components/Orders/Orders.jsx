@@ -7,12 +7,11 @@ export default function Orders({ section, order, setOrder, getOrder }) {
     const [filterType, setFilterType] = useState("All")
 
     const types = [
-        "All",
-        ...new Set(order.map(item => item.Type))
+        "Todos",
+        ...new Set(order.map(item => item.Type).filter(Boolean))
     ]
-
     const filteredOrders = order.filter(item =>
-        filterType === "All" || item.Type === filterType
+        filterType === "Todos" || item.Type === filterType
     )
     return (
         <>
