@@ -5,19 +5,21 @@ export default async function editOrder(order_name, edit) {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify({
                 ...edit,
                 nameToBeReplaced: order_name
             })
         })
         const data = await response.json()
-        if (data?.Error){
-            console.error(data?.Error)
+        if (!response.ok || !data?.Status) {
+            throw new Error(data?.Error || data?.detail || 'Não foi possível editar o pedido.')
         }
-        alert('Editado com sucesso')
+        alert('Pedido editado com sucesso')
     }
     catch (error) {
         console.error(error)
+        alert(error instanceof Error ? error.message : 'Não foi possível editar o pedido.')
     }
 
 }
