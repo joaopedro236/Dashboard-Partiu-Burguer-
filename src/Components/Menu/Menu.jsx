@@ -25,7 +25,7 @@ export default function Menu({ setSection }) {
                     <li className={`menuEditOption ${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
                         setSection("editDescription")
                         setMenuActive(false)
-                    }}> •Editar Descrição</li>
+                    }}>• Editar Descrição</li>
                     <li className={`menuEditOption ${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
                         setSection("editPrice")
                         setMenuActive(false)
