@@ -16,8 +16,8 @@
                 <section className={`editOrder ${section == 'editDescription' ? 'flex' : 'hidden'} gap-2.5 flex-col items-center justify-center w-full h-screen`}>
                     <header>
 
-                        <h1>Deletar Pedidos</h1>
-                        <p>preenche os inputs e deleta</p>
+                        <h1>Editar Descrição</h1>
+                        <p>preenche os inputs e edita</p>
                     </header>
                     <form onSubmit={handleSubmit}>
 

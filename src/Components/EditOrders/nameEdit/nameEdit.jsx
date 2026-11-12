@@ -16,8 +16,8 @@ export default function nameEdit( { order,section }) {
             <section className={`editOrder ${section == 'editName' ? 'flex' : 'hidden'} gap-2.5 flex-col items-center justify-center w-full h-screen`}>
                 <header>
 
-                    <h1>Deletar Pedidos</h1>
-                    <p>preenche os inputs e deleta</p>
+                    <h1>Editar o nome</h1>
+                    <p>preenche os inputs e edita</p>
                 </header>
                 <form onSubmit={handleSubmit}>
 
