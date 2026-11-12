@@ -18,23 +18,23 @@ export default function Menu({ setSection }) {
                         setMenuActive(false)
                     }}>Cardápio</li>
                     <li onClick={() => setEditActiveOrder(prev => !prev)}>Editar Pedido</li>
-                    <li className={`${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
+                    <li className={`menuEditOption ${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
                         setSection("editName")
                         setMenuActive(false)
                     }}>Editar Nome</li>
-                    <li className={`${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
+                    <li className={`menuEditOption ${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
                         setSection("editDescription")
                         setMenuActive(false)
                     }}>Editar Descrição</li>
-                    <li className={`${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
+                    <li className={`menuEditOption ${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
                         setSection("editPrice")
                         setMenuActive(false)
                     }}>Editar Preço</li>
-                    <li className={`${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
+                    <li className={`menuEditOption ${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
                         setSection("editImage")
                         setMenuActive(false)
                     }}>Editar Imagem</li>
-                    <li className={`${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
+                    <li className={`menuEditOption ${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
                         setSection("editType")
                         setMenuActive(false)
                     }}>Editar Tipo</li>
