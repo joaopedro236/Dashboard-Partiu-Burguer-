@@ -24,6 +24,8 @@
   cursor: pointer;
 }
 .menu ul li.menuEditOption {
+  box-sizing: border-box;
+  width: 180px;
   font-size: 0.85rem;
   text-align: left !important;
   transform: translateX(18px);
