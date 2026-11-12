@@ -8,6 +8,7 @@ from API.Routers.sendVerification import router as sendVerification
 from API.Routers.changeStateOrder import router as chargeStateOrder
 from API.Routers.authorization import router as authorization
 from API.Middlewares.AuthMiddleware import AuthMiddleware
+from API.Routers.editOrder import router as editOrder
 from API.Routers.deleteOrder import router as deleteOrder
 import time
 from collections import defaultdict
@@ -59,6 +60,7 @@ app.include_router(validateCode)
 app.include_router(sendVerification)
 app.include_router(authorization)
 app.include_router(deleteOrder)
+app.include_router(editOrder)
 
 @app.on_event("startup")
 def startup():

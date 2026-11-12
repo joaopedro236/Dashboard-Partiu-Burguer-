@@ -1,0 +1,104 @@
+.editOrder {
+  padding: 40px 24px;
+}
+
+.editOrder header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.editOrder header h1 {
+  color: #f1f5f9;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.editOrder header p {
+  color: #8491a5;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0;
+}
+.editOrder form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  padding: 38px;
+  gap: 10px;
+  box-sizing: border-box;
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.22);
+}
+.editOrder form select, 
+.editOrder form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px 18px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  color: #e2e8f0;
+  background: #0d1525;
+  border: 1px solid #263248;
+  border-radius: 10px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+.editOrder form input::placeholder ,
+.editOrder form select::placeholder {
+  color: #64748b;
+}
+
+.editOrder form input:hover, 
+.editOrder form select:hover {
+  border-color: #3b4963;
+}
+
+.editOrder form input:focus, 
+.editOrder form select:focus {
+  background: #111c30;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.13);
+}
+.editOrder form button,
+.editOrder form button[type="submit"] {
+  width: 100%;
+  padding: 15px 20px;
+  margin-top: 5px;
+  color: #ffffff;
+  background: #6366f1;
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.editOrder form button:hover,
+.editOrder form button[type="submit"]:hover {
+  background: #7477fa;
+  border-color: #818cf8;
+  box-shadow: 0 6px 22px rgba(99, 102, 241, 0.22);
+  transform: translateY(-2px);
+}
+
+.editOrder form button:active,
+.editOrder form button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+.editOrder form select:focus-visible,
+.editOrder form button:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 3px;
+}
