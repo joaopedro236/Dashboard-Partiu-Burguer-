@@ -22,7 +22,7 @@ def validate_code(data: VerificationRequest, response: Response):
     redis.set(
             f"authorized:{token}",
             "1",
-            ex=28800
+            ex=1209600
         )
     response.set_cookie(
         key="authorization",
@@ -30,7 +30,7 @@ def validate_code(data: VerificationRequest, response: Response):
         httponly=True,
         secure=True,
         samesite="none",
-        max_age=28800
+        max_age=1209600
     )
     return {
         "Status": True,
