@@ -29,7 +29,7 @@ export default function CreateOrder({section}){
             <label htmlFor="type">Tipo</label>
             <select name="type" id="type" required>
                 <option value="Artersanal">Artesanal</option>
-                <option value="Não Artersanal">Não Artesanal</option>
+                <option value="Não Artersanal">Tradicional</option>
                 <option value="Porcão">Porção</option>
                 <option value="Bebida">Bebida</option>
                 <option value="Combo">Combo</option>
