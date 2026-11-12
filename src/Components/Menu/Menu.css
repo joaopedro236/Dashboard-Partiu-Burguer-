@@ -24,22 +24,5 @@
   cursor: pointer;
 }
 .menu ul li.menuEditOption {
-  box-sizing: border-box;
-  min-width: 190px;
-  padding: 8px 14px;
-  color: var(--text-gray);
-  font-size: 0.9rem;
-  text-align: left;
-  background: rgba(255, 255, 255, 0.04);
-  border-left: 2px solid rgba(148, 163, 184, 0.45);
-  border-radius: 0 6px 6px 0;
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
-}
-.menu ul li.menuEditOption:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-left-color: #818cf8;
-  transform: translateX(3px);
+  font-size: 0.85rem;
 }
