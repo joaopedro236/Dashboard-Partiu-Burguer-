@@ -21,23 +21,23 @@ export default function Menu({ setSection }) {
                     <li className={`menuEditOption ${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
                         setSection("editName")
                         setMenuActive(false)
-                    }}>Editar Nome</li>
+                    }}>• Editar Nome</li>
                     <li className={`menuEditOption ${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
                         setSection("editDescription")
                         setMenuActive(false)
-                    }}>Editar Descrição</li>
+                    }}> •Editar Descrição</li>
                     <li className={`menuEditOption ${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
                         setSection("editPrice")
                         setMenuActive(false)
-                    }}>Editar Preço</li>
+                    }}> • Editar Preço</li>
                     <li className={`menuEditOption ${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
                         setSection("editImage")
                         setMenuActive(false)
-                    }}>Editar Imagem</li>
+                    }}>• Editar Imagem</li>
                     <li className={`menuEditOption ${editActiveOrder ? '' : 'hidden'}`} onClick={() => {
                         setSection("editType")
                         setMenuActive(false)
-                    }}>Editar Tipo</li>
+                    }}>• Editar Tipo</li>
                     <li onClick={() => {
                         setSection("deleteOrder")
                         setMenuActive(false)
