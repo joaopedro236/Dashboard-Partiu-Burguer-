@@ -1,5 +1,9 @@
 :root {
-  --bg-primary: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+  --bg-primary: radial-gradient(circle at center,
+      #24100a 0%,
+      #120806 40%,
+      #080404 70%,
+      #000000 100%);
   --white: #fff;
   --black: #000;
   --menu-color: rgba(30, 41, 59, 0.7);
