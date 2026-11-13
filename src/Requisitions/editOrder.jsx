@@ -2,14 +2,18 @@ export default async function editOrder(order_name, edit) {
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/editOrder`, {
             method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+           
             credentials: 'include',
-            body: JSON.stringify({
-                ...edit,
-                nameToBeReplaced: order_name
-            })
+            body: (() => {
+                const formData = new FormData()
+                formData.append('nameToBeReplaced', order_name)
+
+                Object.entries(edit).forEach(([key, value]) => {
+                    formData.append(key, value)
+                })
+
+                return formData
+            })()
         })
         const data = await response.json()
         if (!response.ok || !data?.Status) {
