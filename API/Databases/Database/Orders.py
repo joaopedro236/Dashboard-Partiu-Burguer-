@@ -14,11 +14,16 @@ def createDatabaseOrders():
         image_url text,
         price numeric(10,2),
         type text,
-        active boolean)""")
+        active boolean,
+        display_order integer default 0)""")
+        cursor.execute("""
+        ALTER TABLE Orders
+        ADD COLUMN IF NOT EXISTS display_order integer DEFAULT 0
+        """)
         conn.commit()
     except Exception as e:
         if conn:
-            conn.roolback()
+            conn.rollback()
         return {"Status": False, "Error": str(e)}
     finally:
         if cursor:

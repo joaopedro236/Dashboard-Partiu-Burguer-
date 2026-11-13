@@ -3,6 +3,7 @@ from API.Routers.createOrder import router as createOrder
 from API.Databases.Database.Orders import createDatabaseOrders
 from fastapi.responses import JSONResponse
 from API.Routers.getOrder import router as getOrder
+from API.Routers.updateOrderSequence import router as updateOrderSequence
 from API.Routers.validateCode import router as validateCode
 from API.Routers.sendVerification import router as sendVerification
 from API.Routers.changeStateOrder import router as chargeStateOrder
@@ -19,7 +20,6 @@ app = FastAPI()
 from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
-
 
 requests_by_ip = defaultdict(list)
 
@@ -55,6 +55,7 @@ app.add_middleware(
 app.middleware("http")(AuthMiddleware)
 app.include_router(createOrder)
 app.include_router(getOrder)
+app.include_router(updateOrderSequence)
 app.include_router(chargeStateOrder)
 app.include_router(validateCode)
 app.include_router(sendVerification)

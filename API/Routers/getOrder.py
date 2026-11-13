@@ -9,9 +9,8 @@ def getOrder():
     conn = None
     cursor = None
     try:
-
         conn, cursor = connect_database_Order()
-        cursor.execute("select id, name, description, image_url ,price, active,type from Orders ORDER BY id ASC")
+        cursor.execute("select id, name, description, image_url, price, active, type, display_order from Orders ORDER BY COALESCE(display_order, 999999), id ASC")
         result = cursor.fetchall()
         return [
             {
@@ -21,11 +20,11 @@ def getOrder():
                 "Imagem_url": row[3],
                 "Price": row[4],
                 "Active": row[5],
-                'Type': row[6]
+                'Type': row[6],
+                'DisplayOrder': row[7]
             }
             for row in result
         ]
-
     except Exception as e:
         return {"Status": False, "Error": str(e)}
     finally:
