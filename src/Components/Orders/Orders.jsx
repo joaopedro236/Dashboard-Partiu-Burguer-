@@ -1,38 +1,18 @@
 import "./orders.css"
 import chargeStateOrder from "../../Requisitions/chargeStateOrderRequisition"
 import { useState } from "react"
-import OrderSort from "./OrderSort"
-
-function getPrice(value) {
-    const price = Number.parseFloat(String(value ?? "").replace(",", "."))
-    return Number.isNaN(price) ? 0 : price
-}
 
 export default function Orders({ section, order, setOrder, getOrder }) {
 
     const [filterType, setFilterType] = useState("Todos")
-    const [sortOrder, setSortOrder] = useState("name-asc")
 
     const types = [
         "Todos",
         ...new Set(order.map(item => item.Type).filter(Boolean))
     ]
-    const filteredOrders = order
-        .filter(item => filterType === "Todos" || item.Type === filterType)
-        .sort((first, second) => {
-            if (sortOrder.startsWith("name")) {
-                const result = String(first.Name ?? "").localeCompare(
-                    String(second.Name ?? ""),
-                    "pt-BR",
-                    { sensitivity: "base" }
-                )
-                return sortOrder === "name-asc" ? result : -result
-            }
-
-            const result = getPrice(first.Price) - getPrice(second.Price)
-            return sortOrder === "price-asc" ? result : -result
-        })
-
+    const filteredOrders = order.filter(item =>
+        filterType === "Todos" || item.Type === filterType
+    )
     return (
         <>
             <section className={`OrdersSection flex-col ${section == "Order" ? "flex" : "hidden"}`}>
@@ -52,7 +32,6 @@ export default function Orders({ section, order, setOrder, getOrder }) {
                             </option>
                         ))}
                     </select>
-                    <OrderSort value={sortOrder} onChange={setSortOrder} />
                 </div>
                 <div className="orders">
                     {filteredOrders.map((orderMap, index) => (
