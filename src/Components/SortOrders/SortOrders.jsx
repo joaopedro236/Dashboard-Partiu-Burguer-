@@ -33,10 +33,10 @@ export default function SortOrders({ section, order, setOrder }) {
       const result = await response.json()
 
       if (!response.ok || result?.Status !== true) {
-        throw new Error(result?.Error || "Não foi possível salvar a ordem.")
+        throw new Error(result?.Error || `Falha ao salvar (HTTP ${response.status}).`)
       }
 
-      setMessage("Ordem salva. O cardápio público será atualizado.")
+      setMessage("Ordem salva com sucesso.")
     } catch (error) {
       setOrder(previousOrder)
       setMessage(error.message || "Erro ao salvar a ordem dos pedidos.")
@@ -47,13 +47,34 @@ export default function SortOrders({ section, order, setOrder }) {
 
   function moveOrder(sourceId, targetId) {
     if (saving) return
+
     const sourceIndex = order.findIndex((item) => String(item.Id) === String(sourceId))
     const targetIndex = order.findIndex((item) => String(item.Id) === String(targetId))
     if (sourceIndex < 0 || targetIndex < 0 || sourceIndex === targetIndex) return
 
-    const nextOrder = [...order]
-    const [movedOrder] = nextOrder.splice(sourceIndex, 1)
-    nextOrder.splice(targetIndex, 0, movedOrder)
+    const sourceType = order[sourceIndex].Type
+    const targetType = order[targetIndex].Type
+    if (selectedType !== "Todos" && (sourceType !== selectedType || targetType !== selectedType)) return
+
+    let nextOrder = [...order]
+    if (selectedType === "Todos") {
+      const [movedItem] = nextOrder.splice(sourceIndex, 1)
+      nextOrder.splice(targetIndex, 0, movedItem)
+    } else {
+      // Reorder only within this category and leave the positions of other categories untouched.
+      const categoryIndexes = order
+        .map((item, index) => item.Type === selectedType ? index : -1)
+        .filter((index) => index !== -1)
+      const categoryOrders = categoryIndexes.map((index) => order[index])
+      const categorySourceIndex = categoryOrders.findIndex((item) => String(item.Id) === String(sourceId))
+      const categoryTargetIndex = categoryOrders.findIndex((item) => String(item.Id) === String(targetId))
+      const [movedItem] = categoryOrders.splice(categorySourceIndex, 1)
+      categoryOrders.splice(categoryTargetIndex, 0, movedItem)
+      categoryIndexes.forEach((index, categoryIndex) => {
+        nextOrder[index] = categoryOrders[categoryIndex]
+      })
+    }
+
     saveOrder(nextOrder, order)
   }
 
@@ -68,7 +89,7 @@ export default function SortOrders({ section, order, setOrder }) {
     <section className={`sortOrders ${section === "sortOrders" ? "flex" : "hidden"}`}>
       <header>
         <h1>Ordenar pedidos</h1>
-        <p>Arraste os itens para alterar a ordem exibida no cardápio Partiu Burguer.</p>
+        <p>Selecione uma categoria e arraste os itens para alterar a ordem no cardápio Partiu Burguer.</p>
       </header>
 
       <label className="sortOrdersFilter">
