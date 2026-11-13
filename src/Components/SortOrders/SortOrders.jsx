@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import "./sortOrders.css"
 
 export default function SortOrders({ section, order, setOrder }) {
@@ -6,6 +6,17 @@ export default function SortOrders({ section, order, setOrder }) {
   const [draggingId, setDraggingId] = useState(null)
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState("")
+  const [selectedType, setSelectedType] = useState("Todos")
+
+  const types = useMemo(() => {
+    const presentTypes = [...new Set(order.map((item) => item.Type).filter(Boolean))]
+    const preferredOrder = ["Tradicional", "Artesanal", "Combo Tradicional", "Combo Artesanal", "Porção", "Bebida"]
+    return ["Todos", ...preferredOrder.filter((type) => presentTypes.includes(type)), ...presentTypes.filter((type) => !preferredOrder.includes(type))]
+  }, [order])
+
+  const visibleOrders = selectedType === "Todos"
+    ? order
+    : order.filter((item) => item.Type === selectedType)
 
   async function saveOrder(nextOrder, previousOrder) {
     setOrder(nextOrder)
@@ -17,9 +28,7 @@ export default function SortOrders({ section, order, setOrder }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({
-          orderIds: nextOrder.map((item) => item.Id),
-        }),
+        body: JSON.stringify({ orderIds: nextOrder.map((item) => item.Id) }),
       })
       const result = await response.json()
 
@@ -48,10 +57,11 @@ export default function SortOrders({ section, order, setOrder }) {
     saveOrder(nextOrder, order)
   }
 
-  function moveByKeyboard(index, direction) {
-    const targetIndex = index + direction
-    if (targetIndex < 0 || targetIndex >= order.length) return
-    moveOrder(order[index].Id, order[targetIndex].Id)
+  function moveByKeyboard(itemId, direction) {
+    const currentIndex = visibleOrders.findIndex((item) => String(item.Id) === String(itemId))
+    const targetIndex = currentIndex + direction
+    if (currentIndex < 0 || targetIndex < 0 || targetIndex >= visibleOrders.length) return
+    moveOrder(visibleOrders[currentIndex].Id, visibleOrders[targetIndex].Id)
   }
 
   return (
@@ -61,13 +71,20 @@ export default function SortOrders({ section, order, setOrder }) {
         <p>Arraste os itens para alterar a ordem exibida no cardápio Partiu Burguer.</p>
       </header>
 
+      <label className="sortOrdersFilter">
+        <span>Categoria</span>
+        <select value={selectedType} onChange={(event) => setSelectedType(event.target.value)}>
+          {types.map((type) => <option key={type} value={type}>{type}</option>)}
+        </select>
+      </label>
+
       <p className="sortOrdersStatus" role="status" aria-live="polite">{message}</p>
 
-      {order.length === 0 ? (
-        <p className="sortOrdersEmpty">Nenhum pedido disponível para ordenar.</p>
+      {visibleOrders.length === 0 ? (
+        <p className="sortOrdersEmpty">Não há pedidos nesta categoria.</p>
       ) : (
-        <ol className="sortOrdersList" aria-label="Pedidos na ordem atual" aria-busy={saving}>
-          {order.map((item, index) => (
+        <ol className="sortOrdersList" aria-label={`Pedidos: ${selectedType}`} aria-busy={saving}>
+          {visibleOrders.map((item, index) => (
             <li
               className={`sortOrdersItem ${draggingId === item.Id ? "isDragging" : ""}`}
               key={item.Id ?? index}
@@ -101,22 +118,8 @@ export default function SortOrders({ section, order, setOrder }) {
               {item.Imagem_url && <img src={item.Imagem_url} alt="" />}
               <span className="sortOrdersName">{item.Name || "Pedido sem nome"}</span>
               <div className="sortOrdersActions">
-                <button
-                  type="button"
-                  onClick={() => moveByKeyboard(index, -1)}
-                  disabled={saving || index === 0}
-                  aria-label={`Mover ${item.Name} para cima`}
-                >
-                  ↑
-                </button>
-                <button
-                  type="button"
-                  onClick={() => moveByKeyboard(index, 1)}
-                  disabled={saving || index === order.length - 1}
-                  aria-label={`Mover ${item.Name} para baixo`}
-                >
-                  ↓
-                </button>
+                <button type="button" onClick={() => moveByKeyboard(item.Id, -1)} disabled={saving || index === 0} aria-label={`Mover ${item.Name} para cima`}>↑</button>
+                <button type="button" onClick={() => moveByKeyboard(item.Id, 1)} disabled={saving || index === visibleOrders.length - 1} aria-label={`Mover ${item.Name} para baixo`}>↓</button>
               </div>
             </li>
           ))}
