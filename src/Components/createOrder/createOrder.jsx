@@ -32,7 +32,8 @@ export default function CreateOrder({section}){
                 <option value="Não Artersanal">Tradicional</option>
                 <option value="Porcão">Porção</option>
                 <option value="Bebida">Bebida</option>
-                <option value="Combo">Combo</option>
+                <option value="Combo">Combo Artesanal</option>
+                <option value="Combo">Combo Tradional</option>
             </select>
             <label htmlFor="description">Descrição do pedido</label>
             <textarea name="description" id="description" placeholder="Sua descrição" required></textarea>
