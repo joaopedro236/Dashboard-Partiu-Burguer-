@@ -1,8 +1,9 @@
 :root {
   --bg-primary: radial-gradient(circle at center,
-      #24100a 0%,
-      #120806 40%,
-      #080404 70%,
+      #5c1b08 0%,
+      #351006 30%,
+      #1c0804 55%,
+      #080202 80%,
       #000000 100%);
   --white: #fff;
   --black: #000;
