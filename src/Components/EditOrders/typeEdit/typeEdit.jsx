@@ -1,5 +1,5 @@
 
-import './typeEdit.css'
+import '../editOrder.css'
 import editOrder from '../../../Requisitions/editOrder'
 
 export default function typeEdit({ order, section }) {

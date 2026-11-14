@@ -1,4 +1,4 @@
-    import './descriptionEdit.css'
+    import '../editOrder.css'
     import editOrder from '../../../Requisitions/editOrder'
     export default function descriptionEdit( { order,section }) {
         const handleSubmit = async (e) => {
