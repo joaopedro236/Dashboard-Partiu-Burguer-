@@ -12,6 +12,65 @@ IMGBB_URL = os.getenv("IMGBB_URL")
 router = APIRouter()
 
 
+@router.post("/createOrder")
+async def create_order(
+    name: str = Form(...),
+    description: str = Form(...),
+    price: float = Form(...),
+    type: str = Form(...),
+    image: UploadFile = File(...)
+):
+    conn = None
+    cursor = None
+
+    try:
+        content = await image.read()
+
+        if not content:
+            return {"Status": False, "Error": "Imagem vazia"}
+
+        save_image = requests.post(
+            "https://api.imgbb.com/1/upload",
+            params={"key": IMGBB_URL},
+            files={
+                "image": (
+                    image.filename,
+                    content,
+                    image.content_type
+                )
+            },
+            timeout=10
+        )
+
+        if not save_image.ok:
+            return {"Status": False, "Error": f"Falha ao enviar imagem: HTTP {save_image.status_code}"}
+
+        try:
+            image_url = save_image.json()["data"]["url"]
+        except Exception:
+            return {"Status": False, "Error": "Resposta inválida do serviço de imagens"}
+
+        conn, cursor = connect_database_Order()
+
+        cursor.execute("""
+            INSERT INTO orders (name, description, image_url, price, type, active)
+            VALUES (%s, %s, %s, %s, %s, %s)
+            RETURNING id
+        """, (name, description, image_url, price, type, True))
+
+        conn.commit()
+
+        return {"Status": True, "Id": cursor.fetchone()[0]}
+
+    except Exception as e:
+        if conn:
+            conn.rollback()
+        return {"Status": False, "Error": str(e)}
+
+    finally:
+        release_database(conn, cursor, pool_Order)
+
+
 @router.patch("/editOrder")
 async def edit_order(
     nameToBeReplaced: str = Form(...),
