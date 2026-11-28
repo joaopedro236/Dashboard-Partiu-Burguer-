@@ -14,8 +14,8 @@ export default function SortOrders({ section, order, setOrder }) {
   }, [order])
 
   const [selectedType, setSelectedType] = useState(() => types[0] || "")
-
-  const visibleOrders = order.filter((item) => item.Type === selectedType)
+  const activeType = types.includes(selectedType) ? selectedType : types[0] || ""
+  const visibleOrders = order.filter((item) => item.Type === activeType)
 
   async function saveOrder(nextOrder, previousOrder) {
     setOrder(nextOrder)
@@ -53,11 +53,11 @@ export default function SortOrders({ section, order, setOrder }) {
 
     const sourceType = order[sourceIndex].Type
     const targetType = order[targetIndex].Type
-    if (sourceType !== selectedType || targetType !== selectedType) return
+    if (sourceType !== activeType || targetType !== activeType) return
 
     const nextOrder = [...order]
     const categoryIndexes = order
-      .map((item, index) => item.Type === selectedType ? index : -1)
+      .map((item, index) => item.Type === activeType ? index : -1)
       .filter((index) => index !== -1)
     const categoryOrders = categoryIndexes.map((index) => order[index])
     const categorySourceIndex = categoryOrders.findIndex((item) => String(item.Id) === String(sourceId))
@@ -87,7 +87,7 @@ export default function SortOrders({ section, order, setOrder }) {
 
       <label className="sortOrdersFilter">
         <span>Categoria</span>
-        <select value={selectedType} onChange={(event) => setSelectedType(event.target.value)}>
+        <select value={activeType} onChange={(event) => setSelectedType(event.target.value)}>
           {types.map((type) => <option key={type} value={type}>{type}</option>)}
         </select>
       </label>
@@ -97,7 +97,7 @@ export default function SortOrders({ section, order, setOrder }) {
       {visibleOrders.length === 0 ? (
         <p className="sortOrdersEmpty">Não há pedidos nesta categoria.</p>
       ) : (
-        <ol className="sortOrdersList" aria-label={`Pedidos: ${selectedType}`} aria-busy={saving}>
+        <ol className="sortOrdersList" aria-label={`Pedidos: ${activeType}`} aria-busy={saving}>
           {visibleOrders.map((item, index) => (
             <li
               className={`sortOrdersItem ${draggingId === item.Id ? "isDragging" : ""}`}
