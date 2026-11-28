@@ -6,17 +6,16 @@ export default function SortOrders({ section, order, setOrder }) {
   const [draggingId, setDraggingId] = useState(null)
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState("")
-  const [selectedType, setSelectedType] = useState("Todos")
 
   const types = useMemo(() => {
     const presentTypes = [...new Set(order.map((item) => item.Type).filter(Boolean))]
     const preferredOrder = ["Tradicional", "Artesanal", "Combo Tradicional", "Combo Artesanal", "Porção", "Bebida"]
-    return ["Todos", ...preferredOrder.filter((type) => presentTypes.includes(type)), ...presentTypes.filter((type) => !preferredOrder.includes(type))]
+    return [...preferredOrder.filter((type) => presentTypes.includes(type)), ...presentTypes.filter((type) => !preferredOrder.includes(type))]
   }, [order])
 
-  const visibleOrders = selectedType === "Todos"
-    ? order
-    : order.filter((item) => item.Type === selectedType)
+  const [selectedType, setSelectedType] = useState(() => types[0] || "")
+
+  const visibleOrders = order.filter((item) => item.Type === selectedType)
 
   async function saveOrder(nextOrder, previousOrder) {
     setOrder(nextOrder)
@@ -54,26 +53,20 @@ export default function SortOrders({ section, order, setOrder }) {
 
     const sourceType = order[sourceIndex].Type
     const targetType = order[targetIndex].Type
-    if (selectedType !== "Todos" && (sourceType !== selectedType || targetType !== selectedType)) return
+    if (sourceType !== selectedType || targetType !== selectedType) return
 
-    let nextOrder = [...order]
-    if (selectedType === "Todos") {
-      const [movedItem] = nextOrder.splice(sourceIndex, 1)
-      nextOrder.splice(targetIndex, 0, movedItem)
-    } else {
-      // Reorder only within this category and leave the positions of other categories untouched.
-      const categoryIndexes = order
-        .map((item, index) => item.Type === selectedType ? index : -1)
-        .filter((index) => index !== -1)
-      const categoryOrders = categoryIndexes.map((index) => order[index])
-      const categorySourceIndex = categoryOrders.findIndex((item) => String(item.Id) === String(sourceId))
-      const categoryTargetIndex = categoryOrders.findIndex((item) => String(item.Id) === String(targetId))
-      const [movedItem] = categoryOrders.splice(categorySourceIndex, 1)
-      categoryOrders.splice(categoryTargetIndex, 0, movedItem)
-      categoryIndexes.forEach((index, categoryIndex) => {
-        nextOrder[index] = categoryOrders[categoryIndex]
-      })
-    }
+    const nextOrder = [...order]
+    const categoryIndexes = order
+      .map((item, index) => item.Type === selectedType ? index : -1)
+      .filter((index) => index !== -1)
+    const categoryOrders = categoryIndexes.map((index) => order[index])
+    const categorySourceIndex = categoryOrders.findIndex((item) => String(item.Id) === String(sourceId))
+    const categoryTargetIndex = categoryOrders.findIndex((item) => String(item.Id) === String(targetId))
+    const [movedItem] = categoryOrders.splice(categorySourceIndex, 1)
+    categoryOrders.splice(categoryTargetIndex, 0, movedItem)
+    categoryIndexes.forEach((index, categoryIndex) => {
+      nextOrder[index] = categoryOrders[categoryIndex]
+    })
 
     saveOrder(nextOrder, order)
   }
@@ -109,7 +102,7 @@ export default function SortOrders({ section, order, setOrder }) {
             <li
               className={`sortOrdersItem ${draggingId === item.Id ? "isDragging" : ""}`}
               key={item.Id ?? index}
-              onDragOver={(event) => event.preventDefault()}
+              onDragOver={(event) => event.preventEvent()}
               onDrop={(event) => {
                 event.preventDefault()
                 if (draggedId.current !== null) moveOrder(draggedId.current, item.Id)
